@@ -1,20 +1,14 @@
 import * as React from "react";
-import Image from "next/image"; // si usas Next.js
+import Image, { ImageProps } from "next/image";
+
 
 import { IconSvgProps } from "@/types";
 
-export const Logo: React.FC<IconSvgProps> = ({
-  size = 36,
-  width,
-  height,
-  ...props
-}) => {
+export const Logo = (props: Omit<ImageProps, "src" | "alt">) => {
   return (
     <Image
-      src="/LOGO-SIN-LETRAS.png"         // ← tu archivo PNG en /public
+      src="/LOGO-SIN-LETRAS.png"
       alt="Logo"
-      width={20}
-      height={20}
       {...props}
     />
   );
