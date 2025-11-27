@@ -1,54 +1,102 @@
 import { Link } from "@heroui/link";
 import { Snippet } from "@heroui/snippet";
 import { Code } from "@heroui/code";
-import {Button, ButtonGroup} from "@heroui/button";
+import { Button, ButtonGroup } from "@heroui/button";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { InstaGramIcon } from "@/components/icons";
+import { button as buttonStyles } from "@heroui/theme";
+import { Palette, TreePine, Users, Sparkles, Mountain, Heart } from "lucide-react"
+import { Card, CardBody } from "@heroui/card"
+
+
+const features = [
+  {
+    icon: Palette,
+    title: "Talleres de Arte",
+    description: "Talleres de pintura, escultura y arte en medio de la naturaleza.",
+  },
+  {
+    icon: TreePine,
+    title: "Espacios Naturales",
+    description: "Áreas verdes diseñadas para inspirar y conectar con el entorno.",
+  },
+  {
+    icon: Users,
+    title: "Comunidad Creativa",
+    description: "Red de personas creativas que comparten experiencias y conocimientos.",
+  },
+  {
+    icon: Sparkles,
+    title: "Eventos Únicos",
+    description: "Exposiciones, festivales y encuentros artísticos durante todo el año.",
+  },
+  {
+    icon: Mountain,
+    title: "Retiros Creativos",
+    description: "Talleres inmersivos para desconectar y reconectar con tu creatividad.",
+  },
+  {
+    icon: Heart,
+    title: "Bienestar Integral",
+    description: "Meditación y actividades que nutren cuerpo y mente.",
+  },
+]
 
 export default function Home() {
   return (
-   <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('./banner.png')",
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-        <div className="max-w-3xl">
-          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">
-            Creatividad · Naturaleza · Arte
-          </p>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6 text-balance">
-            Bienvenidos a <span className="text-primary">AWAKT</span>
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-            Nos especializamos en ofrecer espacios donde las personas pueden explorar su creatividad mientras disfrutan
-            de un entorno natural. Un lugar donde el arte y la naturaleza se fusionan para despertar tu potencial
-            creativo.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button  className="group">
-              Conocer más
-             
-            </Button>
-            <Button variant="bordered" className="group bg-transparent">
-              
-              Ver video
+    <>
+      <section className="flex flex-col justify-center gap-4 py-8 md:py-10">
+        <div className="inline-block max-w-xl text-left justify-center">
+          <span className={title()}>Bienvenidos a &nbsp;</span>
+          <span className={title({ color: "awakt" })}>AWAKT&nbsp;</span>
+          <br />
+          <div className={subtitle({ class: "mt-4" })}>
+            Nos especializamos en ofrecer espacios donde las personas pueden explorar su creatividad mientras disfrutan de un entorno natural.
+          </div>
+          <div className="flex gap-3 items-center justify-center">
+            <Button
+              className="awakt-bg text-white shadow-lg"
+              radius="full"
+              href={siteConfig.links.docs}
+            >
+              Conocer mas
             </Button>
           </div>
         </div>
-      </div>
+        {/* <img src="././logo-sin-letras.png/?" className="img-fluid" /> */}
+      </section>
+      <section id="caracteristicas" className="py-20 md:py-32 ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className={title()}>Lo que nos hace </span>
+            <span className={title({ color: "awakt" })}>únicos</span>
+            <div className={subtitle({ class: "mt-4" })}>
+              Descubre todo lo que AWAKT tiene para ofrecerte en un espacio donde la creatividad florece naturalmente.
+            </div>
+          </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
-          <div className="w-1.5 h-3 bg-primary rounded-full mt-2 animate-pulse" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <Card
+                key={index}
+                className="group bg-card border border-border hover:border-success/50 transition-all duration-300"
+                shadow="none"
+                isPressable
+              >
+                <CardBody className="p-8">
+                  <div className="w-14 h-14 bg-success/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-success/20 transition-colors">
+                    <feature.icon className="h-7 w-7 text-success" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                </CardBody>
+              </Card>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
+
   );
 }

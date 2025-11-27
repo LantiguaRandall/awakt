@@ -7,8 +7,10 @@ import { IconSvgProps } from "@/types";
 export const Logo = (props: Omit<ImageProps, "src" | "alt">) => {
   return (
     <Image
-      src="/LOGO-SIN-LETRAS.png"
+      src="/logo-sin-letras.png"
       alt="Logo"
+      width={20}
+      height={20}
       {...props}
     />
   );
