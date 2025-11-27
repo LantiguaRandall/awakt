@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@heroui/button": "^2.2.27",
-    "bootstrap-icons": "^1.13.1",
-    "lucide-react": "^0.554.0"
-  }
-}
