@@ -60,7 +60,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    instagram:"https://www.instagram.com/awakt.rd/",
+    instagram: "https://www.instagram.com/awakt.rd/",
     github: "https://github.com/heroui-inc/heroui",
     twitter: "https://x.com/hero_ui",
     docs: "https://heroui.com",

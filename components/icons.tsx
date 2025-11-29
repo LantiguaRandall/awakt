@@ -1,7 +1,6 @@
 import * as React from "react";
 import Image, { ImageProps } from "next/image";
 
-
 import { IconSvgProps } from "@/types";
 
 export const Logo = (props: Omit<ImageProps, "src" | "alt">) => {

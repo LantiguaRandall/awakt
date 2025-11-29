@@ -2,10 +2,12 @@ import { Button } from "@heroui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { Image } from "@heroui/image";
 
-
 export function Hero() {
   return (
-    <section id="inicio" className="relative  flex items-center overflow-hidden bg-background">
+    <section
+      id="inicio"
+      className="relative  flex items-center overflow-hidden bg-background"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-16 pb-28 w-full">
         <div className="grid lg:grid-cols-2 gap-2 lg:gap-2 items-center">
           {/* Content Column */}
@@ -17,9 +19,10 @@ export function Hero() {
               Bienvenidos a <span className="text-success">AWAKT</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-xl">
-              Nos especializamos en ofrecer espacios donde las personas pueden explorar su creatividad mientras
-              disfrutan de un entorno natural. Un lugar donde el arte y la naturaleza se fusionan para despertar tu
-              potencial creativo.
+              Nos especializamos en ofrecer espacios donde las personas pueden
+              explorar su creatividad mientras disfrutan de un entorno natural.
+              Un lugar donde el arte y la naturaleza se fusionan para despertar
+              tu potencial creativo.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
@@ -27,7 +30,9 @@ export function Hero() {
                 size="lg"
                 radius="full"
                 className="group font-medium text-background"
-                endContent={<ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
+                endContent={
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                }
               >
                 Conocer más
               </Button>
@@ -55,7 +60,9 @@ export function Hero() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-foreground">500+</p>
-                  <p className="text-sm text-muted-foreground">Artistas creativos</p>
+                  <p className="text-sm text-muted-foreground">
+                    Artistas creativos
+                  </p>
                 </div>
               </div>
             </div>
