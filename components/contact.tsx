@@ -23,7 +23,7 @@ export function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           <div>
-            <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Contacto</p>
+            <p className="text-success font-medium tracking-widest uppercase text-sm mb-4">Contacto</p>
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-balance">Pregúntanos lo que quieras</h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
               ¿Eres una empresa o marca que busca servicios creativos, una agencia que busca escalar, una mente
@@ -64,25 +64,19 @@ export function Contact() {
             <div className="flex gap-4">
               <a
                 href="#"
-                className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="w-10 h-10 text-overlay bg-success rounded-full flex items-center justify-center hover:bg-primary hover:text-background transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="w-10 h-10 text-overlay bg-success rounded-full flex items-center justify-center hover:bg-primary hover:text-background transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube className="h-5 w-5" />
-              </a>
+              
             </div>
           </div>
 
@@ -124,8 +118,8 @@ export function Contact() {
                 />
                 <Button
                   type="submit"
-                  color="primary"
-                  className="w-full group font-medium"
+                  color="success"
+                  className="w-full group font-medium text-background"
                   endContent={<Send className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
                 >
                   Enviar mensaje
