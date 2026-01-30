@@ -10,6 +10,7 @@ export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    tel:"",
     message: "",
   })
   const [isLoading, setIsLoading] = useState(false)
@@ -39,7 +40,7 @@ export function Contact() {
           type: 'success', 
           message: '¡Mensaje enviado exitosamente! Te contactaremos pronto.' 
         })
-        setFormData({ name: '', email: '', message: '' })
+        setFormData({ name: '', email: '', tel: '', message: '' })
       } else {
         setStatus({ 
           type: 'error', 
@@ -161,6 +162,38 @@ export function Contact() {
                     inputWrapper: "border-border",
                   }}
                 />
+                <Input
+  label="Teléfono"
+  type="tel"
+  placeholder="+1 809-779-6500"
+  value={formData.tel}
+  onValueChange={(value) => {
+    // Eliminar todo excepto números
+    const numbers = value.replace(/\D/g, '');
+    
+    // Formatear el número
+    let formatted = '';
+    if (numbers.length > 0) {
+      formatted = '+1 ';
+      if (numbers.length > 1) {
+        formatted += numbers.substring(1, 4);
+      }
+      if (numbers.length > 4) {
+        formatted += '-' + numbers.substring(4, 7);
+      }
+      if (numbers.length > 7) {
+        formatted += '-' + numbers.substring(7, 11);
+      }
+    }
+    
+    setFormData({ ...formData, tel: formatted || value });
+  }}
+  variant="bordered"
+  isRequired
+  classNames={{
+    inputWrapper: "border-border",
+  }}
+/>
                 <Textarea
                   label="Mensaje"
                   placeholder="Cuéntanos sobre tu proyecto o pregunta..."

@@ -5,10 +5,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
-    const { name, email, message } = await request.json();
+    const { name, email, tel, message } = await request.json();
 
     // Validación
-    if (!name || !email || !message) {
+    if (!name || !email || !tel || !message) {
       return NextResponse.json(
         { error: 'Todos los campos son requeridos' },
         { status: 400 }
@@ -26,9 +26,9 @@ export async function POST(request: Request) {
 
     // Enviar email
     const data = await resend.emails.send({
-      from: 'AWAKT <rlantigua@awakt.com.do>',
+      from: 'AWAKT <mensajesweb@awakt.com.do>',
       to: ['awakt.rd@gmail.com'],
-      subject: `Nuevo mensaje de contacto de ${name}`,
+      subject: `Nuevo mensaje de ${name}` + ' WhatsApp:' + tel,
       replyTo: email,
       html: `
         <!DOCTYPE html>
