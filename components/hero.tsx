@@ -6,13 +6,13 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative  flex items-center overflow-hidden bg-background"
+      className="relative flex items-center overflow-hidden bg-background"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-16 pb-28 w-full">
         <div className="grid lg:grid-cols-2 gap-2 lg:gap-2 items-center">
           {/* Content Column */}
           <div className="relative z-10 order-2 lg:order-1">
-            <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">
+            <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4 relative z-20">
               Creatividad · Naturaleza · Arte
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 text-balance">
@@ -50,10 +50,10 @@ export function Hero() {
 
           <div className="relative order-1 lg:order-2">
             {/* Decorative background element */}
-            <div className="absolute -top-8 -right-8 w-full h-full bg-primary/10 rounded-3xl" />
+            <div className="absolute -top-8 -right-8 w-full h-full bg-primary/10 rounded-3xl -z-10" />
 
             {/* Floating accent card */}
-            <div className="absolute -bottom-6 -left-6 bg-background/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-primary/20">
+            <div className="absolute -bottom-6 -left-6 bg-background/95 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-primary/20 z-20">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
                   <span className="text-primary text-xl font-bold">+</span>
@@ -68,17 +68,17 @@ export function Hero() {
             </div>
 
             {/* Main image - offset positioning */}
-            <div className="relative">
-              <Image
-                src="././logo-sin-letras.png"
-                alt="Espacio creativo AWAKT"
-                className="w-full h-[300px] md:h-[500px] lg:h-[600px] object-cover rounded-3xl shadow-2xl"
-                radius="lg"
-              />
+            <div className="relative z-10">
               {/* Secondary floating element */}
-              <div className="absolute -top-4 -left-4 bg-success text-success-foreground px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+              <div className="absolute -top-4 -left-4 bg-success text-success-foreground px-4 py-2 rounded-full text-sm font-medium shadow-lg z-20">
                 Nuevo espacio 2025
               </div>
+              <Image
+                src="././hero.png"
+                alt="Espacio creativo AWAKT"
+                className="w-full h-[300px] md:h-[500px] lg:h-[600px] object-cover rounded-3xl shadow-2xl relative z-10"
+                radius="lg"
+              />
             </div>
           </div>
         </div>
