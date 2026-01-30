@@ -6,34 +6,34 @@ import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react"
 const events = [
   {
     id: 1,
-    title: "Festival de Arte al Aire Libre",
-    date: "15 de Diciembre, 2025",
-    time: "10:00 AM - 8:00 PM",
-    location: "Jardín Principal",
-    image: "/outdoor-art-festival-with-colorful-paintings-natur.jpg",
-    description: "Una celebración del arte con exposiciones, música en vivo y talleres interactivos.",
-  },
-  {
-    id: 2,
-    title: "Retiro de Pintura en Acuarela",
-    date: "20-22 de Diciembre, 2025",
-    time: "9:00 AM - 5:00 PM",
-    location: "Estudio Norte",
-    image: "/watercolor-painting-workshop-in-nature-studio.jpg",
-    description: "Tres días de inmersión en técnicas de acuarela con maestros invitados.",
-  },
-  {
-    id: 3,
-    title: "Noche de Poesía y Naturaleza",
-    date: "28 de Diciembre, 2025",
-    time: "7:00 PM - 10:00 PM",
-    location: "Anfiteatro",
-    image: "/poetry-night-outdoor-amphitheater-candles-nature.jpg",
-    description: "Una velada mágica de lecturas de poesía bajo las estrellas.",
-  },
+    title: "Tarde de Pintura Awakt",
+    date: "15 de febrero, 2026",
+    time: "3:00 PM - 6:00 PM",
+    location: "Jardín Botánico, Santiago",
+    image: "/event1.jpg",
+    description: "No necesitas experiencia, solo ganas de crear, elige qué pintar: tote bag, cuadro, florero o cofre",
+  }
 ]
 
 export function Events() {
+  const handleWhatsAppReservation = (event: typeof events[0]) => {
+    const phoneNumber = "18297995316" // Reemplaza con tu número (código país + número sin espacios ni signos)
+    const message = `¡Hola! Me gustaría reservar un lugar para el evento:
+
+${event.title}
+Fecha: ${event.date}
+Hora: ${event.time}
+Lugar: ${event.location}
+
+
+¿Hay disponibilidad?`
+    
+    const encodedMessage = encodeURIComponent(message)
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
+    
+    window.open(whatsappUrl, '_blank')
+  }
+
   return (
     <section id="eventos" className="py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,7 +85,11 @@ export function Events() {
                     <span>{event.location}</span>
                   </div>
                 </div>
-                <Button variant="bordered" className="w-full mt-6 border-foreground/20">
+                <Button 
+                  variant="bordered" 
+                  className="w-full mt-6 border-foreground/20"
+                  onClick={() => handleWhatsAppReservation(event)}
+                >
                   Reservar lugar
                 </Button>
               </CardFooter>

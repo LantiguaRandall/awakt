@@ -11,8 +11,8 @@ export function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-16 pb-28 w-full">
         <div className="grid lg:grid-cols-2 gap-2 lg:gap-2 items-center">
           {/* Content Column */}
-          <div className="relative z-10 order-2 lg:order-1">
-            <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4 relative z-20">
+          <div className="relative z-30 order-2 lg:order-1">
+            <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">
               Creatividad · Naturaleza · Arte
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 text-balance">
@@ -48,7 +48,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative order-1 lg:order-2">
+          <div className="relative order-1 lg:order-2 mb-8 lg:mb-0">
             {/* Decorative background element */}
             <div className="absolute -top-8 -right-8 w-full h-full bg-primary/10 rounded-3xl -z-10" />
 
@@ -84,8 +84,8 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 animate-bounce">
+      {/* Scroll indicator - hidden on mobile */}
+      <div className="hidden md:block absolute bottom-0 left-1/2 -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
           <div className="w-1.5 h-3 bg-primary rounded-full mt-2 animate-pulse" />
         </div>

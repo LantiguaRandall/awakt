@@ -4,7 +4,7 @@ import { useState } from "react";
 import {Input,Textarea} from "@heroui/input";
 import {Button} from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
-import { Mail, Phone, MapPin, Send, Instagram, Facebook, Youtube } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Instagram, Facebook, MessageCircleHeart  } from "lucide-react"
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -12,10 +12,48 @@ export function Contact() {
     email: "",
     message: "",
   })
+  const [isLoading, setIsLoading] = useState(false)
+  const [status, setStatus] = useState<{ type: 'success' | 'error' | null, message: string }>({ 
+    type: null, 
+    message: '' 
+  })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+    setIsLoading(true)
+    setStatus({ type: null, message: '' })
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setStatus({ 
+          type: 'success', 
+          message: '¡Mensaje enviado exitosamente! Te contactaremos pronto.' 
+        })
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        setStatus({ 
+          type: 'error', 
+          message: data.error || 'Error al enviar el mensaje. Intenta de nuevo.' 
+        })
+      }
+    } catch (error) {
+      setStatus({ 
+        type: 'error', 
+        message: 'Error de conexión. Por favor intenta de nuevo.' 
+      })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -38,7 +76,9 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="font-medium">hola@awakt.com</p>
+                  <a href="mailto:awakt.rd@gmail.com" className="font-medium hover:text-primary transition-colors">
+                    awakt.rd@gmail.com
+                  </a>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -47,7 +87,9 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Teléfono</p>
-                  <p className="font-medium">+52 (55) 1234-5678</p>
+                  <a href="tel:+18297995316" className="font-medium hover:text-primary transition-colors">
+                    +1 (829) 799-5316
+                  </a>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -56,27 +98,39 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Ubicación</p>
-                  <p className="font-medium">Valle de Bravo, México</p>
+                  <p className="font-medium">Santiago, República Dominicana</p>
                 </div>
               </div>
             </div>
 
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://instagram.com/awakt.rd"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 text-overlay bg-success rounded-full flex items-center justify-center hover:bg-primary hover:text-background transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://facebook.com/awakt.rd"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 text-overlay bg-success rounded-full flex items-center justify-center hover:bg-primary hover:text-background transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
-              
+              <a
+                href="https://api.whatsapp.com/send/?phone=18297995316"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 text-overlay bg-success rounded-full flex items-center justify-center hover:bg-primary hover:text-background transition-colors"
+                aria-label="WhatsApp"
+              >
+                <MessageCircleHeart  className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
@@ -90,6 +144,7 @@ export function Contact() {
                   value={formData.name}
                   onValueChange={(value) => setFormData({ ...formData, name: value })}
                   variant="bordered"
+                  isRequired
                   classNames={{
                     inputWrapper: "border-border",
                   }}
@@ -101,6 +156,7 @@ export function Contact() {
                   value={formData.email}
                   onValueChange={(value) => setFormData({ ...formData, email: value })}
                   variant="bordered"
+                  isRequired
                   classNames={{
                     inputWrapper: "border-border",
                   }}
@@ -112,17 +168,31 @@ export function Contact() {
                   value={formData.message}
                   onValueChange={(value) => setFormData({ ...formData, message: value })}
                   variant="bordered"
+                  isRequired
                   classNames={{
                     inputWrapper: "border-border",
                   }}
                 />
+                
+                {status.type && (
+                  <div className={`p-4 rounded-lg ${
+                    status.type === 'success' 
+                      ? 'bg-success/10 text-success' 
+                      : 'bg-danger/10 text-danger'
+                  }`}>
+                    {status.message}
+                  </div>
+                )}
+
                 <Button
                   type="submit"
                   color="success"
+                  isLoading={isLoading}
+                  disabled={isLoading}
                   className="w-full group font-medium text-background"
-                  endContent={<Send className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
+                  endContent={!isLoading && <Send className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
                 >
-                  Enviar mensaje
+                  {isLoading ? 'Enviando...' : 'Enviar mensaje'}
                 </Button>
               </form>
             </CardBody>
